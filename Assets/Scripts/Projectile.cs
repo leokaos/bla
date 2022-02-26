@@ -3,6 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
     [SerializeField] private float speed;
+    [SerializeField] private float duration;
 
     private bool hit;
     private float direction;
@@ -28,7 +29,7 @@ public class Projectile : MonoBehaviour {
 
         lifetime += Time.deltaTime;
 
-        if (lifetime > 5) {
+        if (lifetime > duration) {
             gameObject.SetActive(false);
         }
     }
