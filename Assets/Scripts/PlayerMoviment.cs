@@ -88,7 +88,7 @@ public class PlayerMoviment : MonoBehaviour {
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-
+    public bool canAttack() {
+        return horizontalInput == 0 && isGrounded() && !onWall();
     }
 }
