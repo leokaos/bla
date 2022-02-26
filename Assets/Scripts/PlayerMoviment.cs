@@ -37,7 +37,7 @@ public class PlayerMoviment : MonoBehaviour {
 
             if (onWall() && !isGrounded()) {
                 body.gravityScale = 0;
-                body.velocity = Vector2.zero;
+                //body.velocity = Vector2.zero;
             } else {
                 body.gravityScale = 3;
             }
@@ -89,6 +89,6 @@ public class PlayerMoviment : MonoBehaviour {
     }
 
     public bool canAttack() {
-        return horizontalInput == 0 && isGrounded() && !onWall();
+        return horizontalInput == 0 && !onWall();
     }
 }
