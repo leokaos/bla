@@ -47,6 +47,12 @@ TextureImporter:
   - first:
       213: -4540417752536426878
     second: Terrain (16x16) 1_14
+  - first:
+      213: 1677969170204734917
+    second: Terrain (16x16) 1_15
+  - first:
+      213: 4766802168184475957
+    second: Terrain (16x16) 1_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -450,7 +456,7 @@ TextureImporter:
         width: 9
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -458,6 +464,48 @@ TextureImporter:
       bones: []
       spriteID: 28650383c123df0c0800000000000000
       internalID: -4540417752536426878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain (16x16) 1_15
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 64
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c53c1ee118594710800000000000000
+      internalID: 1677969170204734917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain (16x16) 1_16
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 32
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531923df055172240800000000000000
+      internalID: 4766802168184475957
       vertices: []
       indices: 
       edges: []
