@@ -1,11 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
-    [SerializeField] private float attackCoolDown;
+    [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
-    [SerializeField] private AudioClip fireballAudio;
+    [SerializeField] private AudioClip sound;
 
     private Animator animator;
     private PlayerMoviment playerMoviment;
@@ -19,27 +21,27 @@ public class PlayerAttack : MonoBehaviour {
 
     private void Update() {
 
-        if (Input.GetMouseButton(0) && cooldownTimer > attackCoolDown && playerMoviment.canAttack()) {
+        if (Input.GetMouseButton(0) && cooldownTimer > attackCooldown && playerMoviment.CanAttack()) {
             Attack();
         }
 
         cooldownTimer += Time.deltaTime;
     }
+
     private void Attack() {
+        
+        SoundManager.instance.PlaySound(sound);
 
-        SoundManager.instance.playSound(fireballAudio);
-
-        animator.SetTrigger("attack");
+        animator.SetTrigger(Player.ANIMATION_TRIGGER_ATTACK);
         cooldownTimer = 0;
 
-        fireballs[FindFireballs()].transform.position = firePoint.position;
-        fireballs[FindFireballs()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        fireballs[FindFireBall()].transform.position = firePoint.position;
+        fireballs[FindFireBall()].GetComponent<Projectible>().SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
-    private int FindFireballs() {
+    private int FindFireBall() {
 
         for (int i = 0; i < fireballs.Length; i++) {
-
             if (!fireballs[i].activeInHierarchy) {
                 return i;
             }
@@ -47,4 +49,5 @@ public class PlayerAttack : MonoBehaviour {
 
         return 0;
     }
+
 }

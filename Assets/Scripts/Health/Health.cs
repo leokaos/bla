@@ -6,20 +6,18 @@ public class Health : MonoBehaviour {
     [Header("Health")]
     [SerializeField] private float startingHealth;
 
-    [Header("IFrame")]
-    [SerializeField] private float iframesDuration;
+    [Header("Iframes")]
+    [SerializeField] private float invunerabilityTime;
     [SerializeField] private float numberOfFlashes;
 
-    private bool dead;
     public float currentHealth { get; private set; }
+    private bool dead;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
     private void Awake() {
-
         currentHealth = startingHealth;
-
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -29,36 +27,33 @@ public class Health : MonoBehaviour {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
 
         if (currentHealth > 0) {
-            animator.SetTrigger("hurt");
-            StartCoroutine(invunerability());
+            animator.SetTrigger(Player.ANIMATION_TRIGGER_HURT);
+            StartCoroutine(Invunerability());
         } else {
 
             if (!dead) {
-                animator.SetTrigger("die");
+                animator.SetTrigger(Player.ANIMATION_TRIGGER_DEAD);
                 GetComponent<PlayerMoviment>().enabled = false;
                 dead = true;
             }
         }
     }
 
-    public void AddHealth(float health) {
+    public void AddHeart(float health) {
         currentHealth = Mathf.Clamp(currentHealth + health, 0, startingHealth);
     }
 
-    private IEnumerator invunerability() {
+    private IEnumerator Invunerability() {
 
-        Physics2D.IgnoreLayerCollision(Layers.PLAYER, Layers.ENEMY, true);
+        Physics2D.IgnoreLayerCollision(Layer.PLAYER.value, Layer.ENEMY.value, true);
 
         for (int i = 0; i < numberOfFlashes; i++) {
-
-            spriteRenderer.color = new Color(1, 0, 1, 0.5f);
-            yield return new WaitForSeconds(iframesDuration / (numberOfFlashes * 2));
-
+            spriteRenderer.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(invunerabilityTime / (numberOfFlashes * 2));
             spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(iframesDuration / (numberOfFlashes * 2));
+            yield return new WaitForSeconds(invunerabilityTime / (numberOfFlashes * 2));
         }
 
-        Physics2D.IgnoreLayerCollision(Layers.PLAYER, Layers.ENEMY, false);
+        Physics2D.IgnoreLayerCollision(Layer.PLAYER.value, Layer.ENEMY.value, false);
     }
-
 }
