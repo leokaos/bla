@@ -33,7 +33,7 @@ public class FireTrap : MonoBehaviour {
             }
         }
     }
-
+    
     private IEnumerator ActiveTrap() {
 
         triggered = true;
