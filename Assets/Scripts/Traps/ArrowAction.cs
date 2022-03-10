@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class ArrowAction : MonoBehaviour {
+public class ArrowAction : EnemyDamage {
 
     [SerializeField] private float speed;
-    [SerializeField] private float damage;
     [SerializeField] private float maxLifeTIme;
 
     private Rigidbody2D rb;
@@ -29,10 +28,7 @@ public class ArrowAction : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        if (Tag.PLAYER.IsSame(collision.tag)) {
-            collision.GetComponent<Health>().TakeDamage(damage);
-        }
-
+        base.OnTriggerEnter2D(collision);
         Destroy(gameObject);
     }
 }
