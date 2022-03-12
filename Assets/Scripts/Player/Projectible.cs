@@ -36,6 +36,10 @@ public class Projectible : MonoBehaviour {
         hit = true;
         boxCollider.enabled = false;
         animator.SetTrigger(Fireball.ANIMATION_TRIGGER_EXPLODE);
+
+        if (Tag.ENEMY.IsSame(collision)) {
+            collision.GetComponent<Health>().TakeDamage(1);
+        }
     }
 
     public void SetDirection(float direction) {
