@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour {
 
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject[] fireballs;
+    [SerializeField] private GameObject fireball;
     [SerializeField] private AudioClip sound;
 
     private Animator animator;
@@ -29,25 +29,14 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Attack() {
-        
+
         SoundManager.instance.PlaySound(sound);
 
         animator.SetTrigger(Player.ANIMATION_TRIGGER_ATTACK);
         cooldownTimer = 0;
 
-        fireballs[FindFireBall()].transform.position = firePoint.position;
-        fireballs[FindFireBall()].GetComponent<Projectible>().SetDirection(Mathf.Sign(transform.localScale.x));
-    }
-
-    private int FindFireBall() {
-
-        for (int i = 0; i < fireballs.Length; i++) {
-            if (!fireballs[i].activeInHierarchy) {
-                return i;
-            }
-        }
-
-        return 0;
+        GameObject projectible = Instantiate(fireball, firePoint.position, firePoint.rotation);
+        projectible.GetComponent<Projectible>().SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
 }

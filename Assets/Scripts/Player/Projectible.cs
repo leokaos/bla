@@ -28,7 +28,7 @@ public class Projectible : MonoBehaviour {
         lifeTime += Time.deltaTime;
 
         if (lifeTime > 5) {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -61,6 +61,6 @@ public class Projectible : MonoBehaviour {
     }
 
     public void Deactivate() {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
